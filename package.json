@@ -6,10 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest watch",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "lint": "eslint src",
+    "fix:prettier": "prettier . --write",
+    "fix:eslint": "eslint . --ext .ts,.tsx --fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -21,17 +24,26 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
-    "@typescript-eslint/eslint-plugin": "^6.14.0",
-    "@typescript-eslint/parser": "^6.14.0",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "@vitest/coverage-v8": "^1.1.3",
-    "eslint": "^8.55.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "eslint-plugin-vitest": "^0.3.20",
     "happy-dom": "^12.10.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.1",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
     "vite-tsconfig-paths": "^4.2.3",
     "vitest": "^1.1.3"
+  },
+  "lint-staged": {
+    "*.{ts, tsx}": "eslint --fix",
+    "*": "pretter --write --ignore-unknown"
   }
 }
