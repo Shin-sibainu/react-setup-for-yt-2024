@@ -68,37 +68,46 @@ export default defineConfig({
 12. src/components/Count.tsx
 
 ```tsx
+// TextInput.js
 import { useState } from "react";
 
-const Count = () => {
-  const [count, setCount] = useState(0);
+const TextInput = () => {
+  const [text, setText] = useState("");
 
   return (
     <div>
-      <p>Current Count is {count}</p>
-      <button onClick={() => setCount((prev) => prev + 1)}>Count Up</button>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Enter some text"
+        aria-label="Text Input"
+      />
+      <p>Entered Text: {text}</p>
     </div>
   );
 };
 
-export default Count;
+export default TextInput;
 ```
 
 13. Count.test.tsx (and run coverage, test)
 
 ```tsx
-import { render, screen } from "@testing-library/react";
+// TextInput.test.js
 import userEvent from "@testing-library/user-event";
-import { expect, test } from "vitest";
+import { render, screen } from "@testing-library/react";
+import TextInput from "./TextInput";
 
-import Count from "./Count";
-
-test("サンプルテスト", async () => {
+test("TextInput Component Test", async () => {
   const user = userEvent.setup();
-  render(<Count />);
-  expect(screen.getByText("Current Count is 0")).toBeInTheDocument();
-  await user.click(screen.getByRole("button", { name: "Count Up" }));
-  expect(screen.getByText("Current Count is 1")).toBeInTheDocument();
+  render(<TextInput />);
+
+  const inputElement = screen.getByLabelText("Text Input");
+  expect(screen.getByText("Entered Text:")).toBeInTheDocument();
+
+  await user.type(inputElement, "Hello World");
+  expect(screen.getByText("Entered Text: Hello World")).toBeInTheDocument();
 });
 ```
 
