@@ -178,6 +178,23 @@ npm pkg set scripts.prepare="husky install"
 npx husky add .husky/pre-commit "npx lint-staged"
 ```
 
+23. pakage.json change and git add . git commit -m "init"
+
+```json
+{
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,md}": ["prettier --write", "eslint --fix"]
+  },
+  "ignorePatterns": ["!.storybook"]
+}
+```
+
+24. npx storybook init --builder @storybook/builder-vite
+
+25. create storyBook directory and file (TextInput/TextInput.stories.tsx)
+
+26.
+
 #### Reference
 
 https://zenn.dev/tentel/articles/488dd8765fb059
