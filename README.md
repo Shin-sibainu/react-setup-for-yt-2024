@@ -354,6 +354,37 @@ jobs:
       - run: npm run test
 ```
 
+or lint_test.yml
+
+```yml
+name: Lint and Test
+
+on: push
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Run Lint
+        run: npm run lint
+
+      - name: Run Test
+        run: npm run test
+```
+
+36. CD(Vite 静的ホスティング参照)
+
 #### Reference
 
 https://zenn.dev/tentel/articles/488dd8765fb059
