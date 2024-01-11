@@ -315,7 +315,44 @@ export default {
 
 33. npx shadcn-ui@latest add button
 
-34.
+34. github actions setup
+
+35. .github/workflows/lint.yml & test.yml
+
+```lint.yml
+name: Lint
+
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm ci
+      - run: npm run lint
+```
+
+```test.yml
+name: Test
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - run: npm ci
+      - run: npm run test
+```
 
 #### Reference
 
